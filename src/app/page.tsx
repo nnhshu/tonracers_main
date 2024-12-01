@@ -4,10 +4,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import Link from "next/link";
 import React from "react";
+import CarItem from "./car";
+
 export default function Home() {
+
   return (
     <>
       <div className="line_vertical fixed left-5 top-0 bottom-0 z-50"></div>
@@ -73,7 +76,7 @@ export default function Home() {
         <div className="line"></div>
       </header>
 
-      <section className="banner pt-24 pb-24 relative">
+      <section className="banner pt-44 pb-24 relative">
         <div className="banner-top p-9">
           <div className="flex gap-2 items-center justify-center mb-10">
             <div className="h-1 w-32 bg-white"></div>
@@ -85,15 +88,17 @@ export default function Home() {
             Blockchain.
           </h2>
         </div>
-        <div className="banner-center md:translate-y-48">
+        <div className="banner-center md:translate-y-48 ">
           <Image
-            className="mx-auto w-1/2"
+            className="mx-auto w-1/2 block md:hidden"
             src="/images/car_2.png"
             width={2048}
             height={1024}
             alt=""
           />
+          <CarItem />
         </div>
+        
         <div className="banner-bottom flex items-center justify-center my-10 md:my-0 md:justify-end md:absolute md:bottom-24 md:right-12">
           <button className="text-sm px-10 py-6 uppercase btn-gradient text-white rounded-full transition-all hover:scale-110">
             START NOW
@@ -106,13 +111,27 @@ export default function Home() {
       <section className="customers_logo md:py-14">
         <div className="customers_logo-content flex items-center">
           <Swiper
-            autoplay={true}
-            speed={2000}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
             loop={true}
             spaceBetween={30}
             slidesPerView={6}
             onSlideChange={() => console.log("slide change")}
             onSwiper={(swiper) => console.log(swiper)}
+            modules={[Autoplay]}
+            breakpoints={{
+              320: {
+                slidesPerView: 2,
+              },
+              641: {
+                slidesPerView: 3,
+              },
+              1024: {
+                slidesPerView: 6,
+              },
+            }}
           >
             <SwiperSlide>
               <Image
@@ -280,6 +299,17 @@ export default function Home() {
                   prevEl: ".about-navigation .prev",
                 }}
                 modules={[Navigation]}
+                breakpoints={{
+                  320: {
+                    slidesPerView: 1,
+                  },
+                  641: {
+                    slidesPerView: 2,
+                  },
+                  1024: {
+                    slidesPerView: 2,
+                  },
+                }}
               >
                 <SwiperSlide>
                   <Image
@@ -338,6 +368,7 @@ export default function Home() {
               </Swiper>
             </div>
           </div>
+          <div className="container mx-auto">
           <div className="px-4">
             <div className="flex gap-3 px-4 md:px-0">
               <div className="w-6 h-6 bg-[--text-color]"></div>
@@ -368,6 +399,7 @@ export default function Home() {
                 />
               </Link>
             </div>
+          </div>
           </div>
         </div>
       </section>
