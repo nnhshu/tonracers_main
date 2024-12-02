@@ -358,7 +358,7 @@ export default function Home() {
                 </SwiperSlide>
                 <SwiperSlide>
                   <Image
-                    className="w-52 h-24 mx-auto"
+                    className="w-full h-full"
                     src="/images/car/car6.png"
                     width={512}
                     height={512}
